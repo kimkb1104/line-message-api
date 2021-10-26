@@ -3,9 +3,6 @@ line.bot:
   channel-secret: [please input channel secret]
   handler.path: /callback
 
-server:
-  port: 26001
-
 spring:
   h2:
     console:
@@ -24,6 +21,4 @@ spring:
       hibernate:
         format_sql: true
     hibernate:
-      ddl-auto: create-drop
-
-
+      ddl-auto: none
