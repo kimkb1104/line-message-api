@@ -1,6 +1,6 @@
 line.bot:
-  channel-token:
-  channel-secret:
+  channel-token: [please input channel token]
+  channel-secret: [please input channel secret]
   handler.path: /callback
 
 server:

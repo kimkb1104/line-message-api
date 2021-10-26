@@ -1,13 +1,13 @@
-package com.kimkb1104.linebot;
+package com.kimkb1104.linemessageapi;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class LinebotApplication {
+public class LineMessageApplication {
 
     public static void main(String[] args) {
-        SpringApplication.run(LinebotApplication.class, args);
+        SpringApplication.run(LineMessageApplication.class, args);
     }
 
 }
