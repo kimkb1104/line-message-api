@@ -45,6 +45,26 @@ class UserInfoServiceTest {
     }
 
     @Test
+    @DisplayName("유저 가져오기")
+    void getUser() {
+
+        // given
+        String userId = "test_user2";
+        UserInfo userInfo = UserInfo.builder()
+                .userId(userId)
+                .isFollow(true)
+                .build();
+        Mockito.when(userInfoRepository.findByUserId(any()))
+                .thenReturn(Optional.of(userInfo));
+
+        // when
+        UserInfo findUserInfo = userInfoService.getUser(userId);
+
+        // then
+        assertThat(userInfo.equals(findUserInfo)).isTrue();
+    }
+
+    @Test
     @DisplayName("언팔로우")
     void unfollow() {
 

@@ -32,5 +32,4 @@ class UserInfoTest {
         // then
         assertThat(userInfo.isFollow() != beforeIsFollow).isTrue();
     }
-
 }

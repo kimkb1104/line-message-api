@@ -2,6 +2,7 @@ plugins {
     id 'org.springframework.boot' version '2.2.13.RELEASE'
     id 'io.spring.dependency-management' version '1.0.11.RELEASE'
     id 'java'
+    id 'jacoco'
 }
 
 group = 'com.kimkb1104'
@@ -33,4 +34,47 @@ dependencies {
 
 test {
     useJUnitPlatform()
+}
+
+jacoco {
+    toolVersion = '0.8.5'
+}
+
+jacocoTestReport {
+    afterEvaluate {
+        classDirectories.setFrom(files(classDirectories.files.collect {
+            fileTree(dir: it, excludes: [
+                    '**/LineMessageApplication.class',
+                    '**/LineEventHandler.class'
+            ])
+        }))
+    }
+
+    finalizedBy 'jacocoTestCoverageVerification'
+}
+
+jacocoTestCoverageVerification {
+    violationRules {
+        rule {
+            enabled = true
+            element = 'CLASS'
+
+            limit {
+                counter = 'LINE'
+                value = 'COVEREDRATIO'
+                minimum = 0.70
+            }
+
+            limit {
+                counter = 'METHOD'
+                value = 'COVEREDRATIO'
+                minimum = 0.70
+            }
+
+            excludes = [
+                    '**.*LineMessageApplication*',
+                    '**.*LineEventHandler*'
+            ]
+        }
+    }
 }

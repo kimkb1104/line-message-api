@@ -19,7 +19,23 @@ class SendControllerTest extends AbstractIntegrationTest {
     private UserInfoService userInfoService;
 
     @Test
-    @DisplayName("메시지 전송")
+    @DisplayName("전체 메시지 전송")
+    void sendAll() throws Exception {
+
+        String content = objectMapper.writeValueAsString(Request.builder()
+                .message("메시지 테스트다")
+                .build());
+
+        mockMvc.perform(post("/send")
+                .content(content)
+                .contentType(MediaType.APPLICATION_JSON))
+                .andExpect(status().isOk())
+                .andExpect(content().string("success"))
+                .andDo(print());
+    }
+
+    @Test
+    @DisplayName("단일 메시지 전송")
     void send() throws Exception {
 
         String content = objectMapper.writeValueAsString(Request.builder()
